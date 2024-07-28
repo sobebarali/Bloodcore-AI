@@ -1,0 +1,17 @@
+analyze_blood_test_report:
+  description: >
+    Interpret the blood test report and identify key health metrics and areas of concern.
+  expected_output: >
+    A summary of the blood test results, highlighting key metrics and any potential health issues.
+
+find_relevant_articles:
+  description: >
+    Search the internet for articles and research papers that provide insights related to the blood test results.
+  expected_output: >
+    A list of articles and papers that provide relevant information and advice based on the blood test results.
+
+provide_health_recommendations:
+  description: >
+    Based on the articles found and the blood test results, provide personalized health recommendations.
+  expected_output: >
+    A list of health recommendations tailored to the individual's needs.
