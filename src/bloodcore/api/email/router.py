@@ -1,26 +1,32 @@
-from fastapi import APIRouter, Depends, BackgroundTasks, HTTPException
+from fastapi import APIRouter, Depends, BackgroundTasks, HTTPException, UploadFile, File, Form
 from bloodcore.api.auth.router import get_current_user
-from .schemas import EmailRequest
-from .service import send_email
-
+from .service import send_email_async
 from ..auth.schemas import User
+from typing import Optional
 
 router = APIRouter()
 
 @router.post("/send")
 async def send_analysis_email(
-    email_request: EmailRequest,
     background_tasks: BackgroundTasks,
     current_user: User = Depends(get_current_user),
+    email: str = Form(...),
+    subject: str = Form(...),
+    body: str = Form(...),
+    file: Optional[UploadFile] = File(None)
 ):
     try:
+        attachment = None
+        if file:
+            attachment = await file.read()
+
         background_tasks.add_task(
-            send_email,
-            email_request.email,
-            email_request.subject,
-            email_request.body,
-            current_user,
+            send_email_async,
+            email,
+            subject,
+            body,
+            attachment,  # Pass attachment data
         )
-        return {"message": "Email sent successfully"}
+        return {"message": "Email is being sent in the background"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
