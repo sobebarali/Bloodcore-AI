@@ -1,6 +1,14 @@
 # Bloodcore Crew
 
-Welcome to the Bloodcore Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+Welcome to the Bloodcore Crew project, powered by [crewAI](https://crewai.com). This project aims to set up a crew of agents using the CrewAI framework to analyze blood test reports, search for relevant health articles, make personalized recommendations, and securely share the analysis and recommendations with users via email.
+
+## Project Goals
+
+- Take a sample blood test report in PDF format
+- Understand and analyze the report's content
+- Search the internet for articles that fit the person's needs
+- Make health recommendations based on the findings
+- Develop a secure POST API to share the analysis and recommendations with the user via email
 
 ## Installation
 
@@ -15,20 +23,38 @@ pip install poetry
 Next, navigate to your project directory and install the dependencies:
 
 1. First lock the dependencies and then install them:
+
 ```bash
 poetry lock
 ```
+
 ```bash
 poetry install
 ```
+
 ### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
+- Add your `OPENAI_API_KEY` into the `.env` file
 - Modify `src/bloodcore/config/agents.yaml` to define your agents
 - Modify `src/bloodcore/config/tasks.yaml` to define your tasks
 - Modify `src/bloodcore/crew.py` to add your own logic, tools and specific args
 - Modify `src/bloodcore/main.py` to add custom inputs for your agents and tasks
+
+## Configuration
+
+In addition to the standard configuration files, make sure to set up the following:
+
+- Mailtrap API credentials for email functionality in `.env`:
+  ```
+  MAILTRAP_USERNAME=your_mailtrap_username
+  MAILTRAP_PASSWORD=your_mailtrap_password
+  ```
+
+- Supabase API credentials for authentication in `.env`:
+  ```
+  SUPABASE_URL=your_supabase_url
+  SUPABASE_KEY=your_supabase_api_key
+  ```
 
 ## Running the Project
 
@@ -38,20 +64,48 @@ To kickstart your crew of AI agents and begin task execution, run this from the 
 poetry run bloodcore
 ```
 
-This command initializes the bloodcore Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+This command initializes the Bloodcore Crew, assembling the agents and assigning them tasks as defined in your configuration. This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
 
 ## Understanding Your Crew
 
-The bloodcore Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+The Bloodcore Crew consists of multiple AI agents collaborating to achieve the project goals:
 
-## Support
+- Blood Test Analyzer: Interprets and analyzes the PDF blood test report
+- Article Searcher: Searches the internet for relevant health articles based on the analysis
+- Recommendation Maker: Generates personalized health recommendations
+- Email Sender: Integrates with Mailtrap to send the analysis and recommendations via email
+- API Developer: Creates a secure POST API endpoint for receiving reports and sending emails
 
-For support, questions, or feedback regarding the Bloodcore Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+## APIs
 
-Let's create wonders together with the power and simplicity of crewAI.
+### Blood Test Report Analysis API
+
+- Endpoint: `/api/analyze-report`
+- Method: POST
+- Request Body:
+  - `report`: PDF file of the blood test report
+  - `email`: User's email address for receiving the analysis and recommendations
+- Response:
+  - `status`: Success status of the analysis
+  - `message`: Additional information about the analysis process
+
+### User Authentication API
+
+- Endpoint: `/api/auth/signup`
+- Method: POST
+- Request Body:
+  - `email`: User's email address
+  - `password`: User's password
+- Response:
+  - `token`: JWT token for authenticated requests
+
+- Endpoint: `/api/auth/login`
+- Method: POST
+- Request Body:
+  - `email`: User's email address
+  - `password`: User's password
+- Response:
+  - `token`: JWT token for authenticated requests
+
+- Endpoint: `api/auth/me`
+
