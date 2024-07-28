@@ -38,13 +38,16 @@ async def login_user(email: str, password: str) -> dict:
 
 async def get_user() -> dict:
     try:
+        # Refresh the session to get a new session token
+        res = supabase.auth.refresh_session()
+      
+        # Retrieve the logged-in user using the current session
         user = supabase.auth.get_user()
         logger.info(f"Retrieved user information: {user}")
         return user
     except Exception as e:
         logger.error(f"Failed to retrieve user information: {str(e)}")
         raise e
-
 async def logout_user() -> dict:
     try:
         logout = supabase.auth.sign_out()
