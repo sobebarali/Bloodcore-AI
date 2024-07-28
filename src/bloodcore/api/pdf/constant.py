@@ -1,0 +1,1 @@
+INVALID_PDF_FILE = "Invalid PDF file"
