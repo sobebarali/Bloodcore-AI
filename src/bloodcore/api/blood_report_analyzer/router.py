@@ -5,7 +5,7 @@ from ..auth.schemas import User
 
 router = APIRouter()
 
-@router.post("/upload")
+@router.post("/analyze-report")
 async def upload_blood_test_report(
     email: str = Form(...),
     pdf_file: UploadFile = File(...),

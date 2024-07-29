@@ -23,6 +23,6 @@ async def create_blood_test_report(email: str, pdf_file: UploadFile, current_use
         # Process the text with the CrewAI setup
         result = BloodcoreCrew().crew().kickoff(inputs=inputs)
        
-        return {"email": email, "pdf_url": pdf_path, "extracted_text": result}
+        return {"email": email,  "result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred while processing the report: {e}")
