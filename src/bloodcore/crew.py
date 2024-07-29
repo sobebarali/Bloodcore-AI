@@ -32,6 +32,7 @@ class BloodcoreCrew():
 		return Agent(
 			config=self.agents_config['researcher'],
 			verbose=True,
+			tools=[search_tool], 
 		)
   
 	@agent
@@ -39,6 +40,7 @@ class BloodcoreCrew():
 		return Agent(
 			config=self.agents_config['health_advisor'],
 			verbose=True,
+            tools=[search_tool],
 		)
 
 	@task
