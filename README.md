@@ -93,7 +93,7 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
 
 ### Blood Test Report Analysis API
 
-- Endpoint: `/api/analyze-report`
+- Endpoint: `/blood-report/analyze-report`
 - Method: POST
 - Request Body:
   - `report`: PDF file of the blood test report
@@ -104,7 +104,7 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
 
 ### User Authentication API
 
-- Endpoint: `/api/auth/signup`
+- Endpoint: `auth/signup`
 - Method: POST
 - Request Body:
   - `email`: User's email address
@@ -112,7 +112,7 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
 - Response:
   - `user`: User's Object
 
-- Endpoint: `/api/auth/login`
+- Endpoint: `auth/login`
 - Method: POST
 - Request Body:
   - `email`: User's email address
@@ -120,12 +120,12 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
 - Response:
   - `message`: Additional information about the analysis process
 
-- Endpoint: `api/auth/me`
+- Endpoint: `auth/me`
 - Method: GET
 - Response:
   - `user`: User's Object
 
-- Endpoint: `api/auth/logout`
+- Endpoint: `auth/logout`
 - Method: GET
 - Response:
   - `message`: Additional information about the analysis process  
@@ -133,7 +133,7 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
 
 ### Email Sender API
 
-- Endpoint: `/api/email/send`
+- Endpoint: `email/send`
 - Method: POST
 - Request Body:
   - `email`: User's email address
