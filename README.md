@@ -46,11 +46,11 @@ In addition to the standard configuration files, make sure to set up the followi
 
 - Mailtrap API credentials for email functionality in `.env`:
   ```
-  SMTP_USERNAME="abjjflkfhklsaf"
-  SMTP_PASSWORD="fsjklfdhslfhdsjldhfd"
+  SMTP_USERNAME="username"
+  SMTP_PASSWORD="password"
   SMTP_SERVER="sandbox.smtp.mailtrap.io"
   SMTP_PORT="2525"
-  SMTP_FROM_EMAIL="sobebar.ali17@gmail.com"
+  SMTP_FROM_EMAIL="email"
   ```
 
 - Supabase API credentials for authentication in `.env`:
