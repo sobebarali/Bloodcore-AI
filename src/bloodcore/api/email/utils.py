@@ -1,5 +1,5 @@
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-from .constants import SMTP_CONFIG
+from .config import SMTP_CONFIG
 from typing import Optional
 import logging
 

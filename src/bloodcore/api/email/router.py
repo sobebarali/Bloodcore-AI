@@ -15,6 +15,9 @@ async def send_analysis_email(
     body: str = Form(...),
     file: Optional[UploadFile] = File(None)
 ):
+    if not current_user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
     try:
         attachment = None
         if file:
