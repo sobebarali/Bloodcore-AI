@@ -46,8 +46,11 @@ In addition to the standard configuration files, make sure to set up the followi
 
 - Mailtrap API credentials for email functionality in `.env`:
   ```
-  MAILTRAP_USERNAME=your_mailtrap_username
-  MAILTRAP_PASSWORD=your_mailtrap_password
+  SMTP_USERNAME="abjjflkfhklsaf"
+  SMTP_PASSWORD="fsjklfdhslfhdsjldhfd"
+  SMTP_SERVER="sandbox.smtp.mailtrap.io"
+  SMTP_PORT="2525"
+  SMTP_FROM_EMAIL="sobebar.ali17@gmail.com"
   ```
 
 - Supabase API credentials for authentication in `.env`:
@@ -55,6 +58,16 @@ In addition to the standard configuration files, make sure to set up the followi
   SUPABASE_URL=your_supabase_url
   SUPABASE_KEY=your_supabase_api_key
   ```
+
+- OpenAI API key for the Article Searcher agent in `.env`:
+  ```
+  OPENAI_API_KEY=your_openai_api_key
+  ```
+
+- Serper API key for the Article Searcher agent in `.env`:
+  ```
+  SERPER_API_KEY=your_serper_api_key
+  ```    
 
 ## Running the Project
 
@@ -97,7 +110,7 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
   - `email`: User's email address
   - `password`: User's password
 - Response:
-  - `token`: JWT token for authenticated requests
+  - `user`: User's Object
 
 - Endpoint: `/api/auth/login`
 - Method: POST
@@ -105,7 +118,28 @@ The Bloodcore Crew consists of multiple AI agents collaborating to achieve the p
   - `email`: User's email address
   - `password`: User's password
 - Response:
-  - `token`: JWT token for authenticated requests
+  - `message`: Additional information about the analysis process
 
 - Endpoint: `api/auth/me`
+- Method: GET
+- Response:
+  - `user`: User's Object
 
+- Endpoint: `api/auth/logout`
+- Method: GET
+- Response:
+  - `message`: Additional information about the analysis process  
+
+
+### Email Sender API
+
+- Endpoint: `/api/email/send`
+- Method: POST
+- Request Body:
+  - `email`: User's email address
+  - `subject`: Email subject
+  - `message`: Email body
+  - `attachment`: PDF file of the blood test report
+- Response:
+  - `status`: Success status of the email sending process
+  - `message`: Additional information about the email sending process
