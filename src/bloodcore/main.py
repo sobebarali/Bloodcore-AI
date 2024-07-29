@@ -26,3 +26,7 @@ async def test_endpoint_1():
 @app.get("/test-endpoint-1")
 async def test_endpoint_2():
     return {"message": "Test endpoint 2 accessed successfully"}
+
+def run():
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
