@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # The SMTP_CONFIG dictionary contains the configuration for the SMTP server.
 # The username and password are the credentials for the SMTP server.
@@ -6,11 +10,11 @@ import os
 # The port and server are the port and server address of the SMTP server.
 # The values are set to the credentials provided by Mailtrap.
 
-username: str = os.environ.get("SMTP_USERNAME")
-password: str = os.environ.get("SMTP_PASSWORD")
-from_email: str = os.environ.get("SMTP_FROM_EMAIL")
-port: int = int(os.environ.get("SMTP_PORT"))
-server: str = os.environ.get("SMTP_SERVER")
+username: str = os.getenv("SMTP_USERNAME")
+password: str = os.getenv("SMTP_PASSWORD")
+from_email: str = os.getenv("SMTP_FROM_EMAIL")
+port: int = int(os.getenv("SMTP_PORT", "587"))  # Default to 587 if not set
+server: str = os.getenv("SMTP_SERVER")
 
 SMTP_CONFIG = {
     "username": username,
@@ -19,3 +23,10 @@ SMTP_CONFIG = {
     "port": port,
     "server": server
 }
+
+# Debug: Print the loaded environment variables
+print(f"SMTP_USERNAME: {username}")
+print(f"SMTP_PASSWORD: {password}")
+print(f"SMTP_FROM_EMAIL: {from_email}")
+print(f"SMTP_PORT: {port}")
+print(f"SMTP_SERVER: {server}")
